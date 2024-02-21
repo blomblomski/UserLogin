@@ -11,6 +11,20 @@ from api import models, schemas
 
 app = FastAPI()
 
+# CORS
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+],
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Create the database tables
 crud.create_database()
 
@@ -65,6 +79,12 @@ async def read_users_me(current_user: Annotated[schemas.UserReturn, Depends(crud
 async def read_users(users: Annotated[list[schemas.UserReturn], Depends(crud.get_all_users)]):
     """Get all users."""
     return users
+
+
+@app.get("/api/welcome")
+async def welcome():
+    """Welcome message."""
+    return {"message": "Welcome to the API"}
 
 if __name__ == "__main__":
     import uvicorn
