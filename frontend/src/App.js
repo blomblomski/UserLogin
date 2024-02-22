@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Header from "./components/Header";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function App() {
+
+  const [token, setToken] = useState(localStorage.getItem('token'));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <main className="mx-auto container">        
+        {!token &&
+          <p className="text-center">Not logged in. <Link className="p-2 bg-blue-700 text-white rounded" to="/login">Login</Link> <span>or</span> <Link className="p-2 rounded bg-green-700 text-white" to="/register">Register</Link></p>
+        }
+      </main>
     </div>
   );
 }

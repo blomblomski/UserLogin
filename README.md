@@ -6,4 +6,4 @@
 - Pydantic
 - JWT
 - SQLAlchemy
--- pip install fastapi[all] python-jose passlib[bcrypt] sqlalchemy[all]
+- pip install fastapi[all] python-jose passlib[bcrypt] sqlalchemy[all]
